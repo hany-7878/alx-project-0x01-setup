@@ -1,17 +1,29 @@
 import React from "react";
-import { UserProps } from "@/interfaces";
+import { UserData } from "@/interfaces";
 
-const UserCard: React.FC<UserProps> = ({ name, username, email, address, phone, website, company }) => {
+interface UserCardProps {
+  user: UserData;
+}
+
+const UserCard: React.FC<UserCardProps> = ({ user }) => {
+  const { name, username, email, address, phone, website, company } = user;
+
   return (
-    <div className="border p-4 rounded-md shadow-md hover:shadow-lg transition bg-white">
-      <h2 className="text-xl font-bold mb-2">{name} ({username})</h2>
+    <div className="border p-4 rounded-lg shadow hover:shadow-lg transition">
+      <h2 className="text-xl font-bold mb-1">{name}</h2>
+      <p className="text-gray-700 mb-1">Username: {username}</p>
       <p className="text-gray-700 mb-1">Email: {email}</p>
       <p className="text-gray-700 mb-1">
-        Address: {address.street}, {address.suite}, {address.city} - {address.zipcode}
+        Address:{" "}
+        {address
+          ? `${address.street || ""}, ${address.suite || ""}, ${address.city || ""} - ${address.zipcode || ""}`
+          : "N/A"}
       </p>
-      <p className="text-gray-700 mb-1">Phone: {phone}</p>
-      <p className="text-gray-700 mb-1">Website: {website}</p>
-      <p className="text-gray-700">Company: {company.name} - {company.catchPhrase}</p>
+      <p className="text-gray-700 mb-1">Phone: {phone || "N/A"}</p>
+      <p className="text-gray-700 mb-1">Website: {website || "N/A"}</p>
+      <p className="text-gray-700 mb-1">
+        Company: {company ? company.name : "N/A"}
+      </p>
     </div>
   );
 };
