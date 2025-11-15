@@ -47,3 +47,6 @@ export interface PostModalProps {
   onClose: () => void;
   onSubmit: (post: PostData) => void;
 }
+
+// Props for Posts page
+export interface PostProps extends PostData {}
