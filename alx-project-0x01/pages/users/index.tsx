@@ -4,16 +4,18 @@ import { UserProps } from "@/interfaces";
 import Header from "@/components/layout/Header";
 
 interface UsersPageProps {
-  posts: UserProps[];
+  posts: UserProps[]; // 'posts' here is your array of users
 }
 
 const Users: React.FC<UsersPageProps> = ({ posts }) => {
   return (
-    <div className="flex flex-col h-screen">
-      <Header />
+   <div className="flex flex-col h-screen">
+      <Header/>
       <h1 className="text-3xl font-bold mb-6">Users</h1>
+
+      {/* Dynamic Rendering */}
       <div className="grid grid-cols-3 gap-4">
-        {posts?.map((user) => (
+        {posts.map((user) => (
           <UserCard key={user.id} {...user} />
         ))}
       </div>
@@ -27,9 +29,7 @@ export async function getStaticProps() {
   const posts = await response.json();
 
   return {
-    props: {
-      posts,
-    },
+    props: { posts },
   };
 }
 
