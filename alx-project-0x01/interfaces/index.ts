@@ -1,3 +1,4 @@
+// Post interfaces
 export interface PostProps {
   userId: number;
   id: number;
@@ -5,6 +6,19 @@ export interface PostProps {
   body: string;
 }
 
+export interface PostData {
+  userId: number;
+  id?: number;
+  title: string;
+  body: string;
+}
+
+export interface PostModalProps {
+  onClose: () => void;
+  onSubmit: (post: PostData) => void;
+}
+
+// User interfaces
 export interface Geo {
   lat: string;
   lng: string;
@@ -25,58 +39,23 @@ export interface Company {
 }
 
 export interface UserProps {
-  id: number;
+  id?: number;
   name: string;
   username: string;
   email: string;
+  address?: Partial<Address>;
+  phone?: string;
+  website?: string;
+  company?: Partial<Company>;
+}
+
+export interface UserData extends UserProps {
   address: Address;
   phone: string;
   website: string;
   company: Company;
 }
 
-
-export interface PostData {
-  userId: number;
-  id?: number;
-  title: string;
-  body: string;
-}
-
-export interface PostModalProps {
-  onClose: () => void;
-  onSubmit: (post: PostData) => void;
-}
-
-// Props for Posts page
-export interface PostProps extends PostData {}
-
-// User data interface
-export interface UserData {
-  id?: number; // optional for new users
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}
-
-// Props for the UserModal component
 export interface UserModalProps {
   onClose: () => void;
   onSubmit: (user: UserData) => void;
